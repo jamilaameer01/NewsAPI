@@ -2,10 +2,7 @@ import React from "react";
 
 const Card = ({ data }) => {
   console.log(data);
-  // const readMore = (url) => {
-  //     window.open(url)
-  // }
-
+  
   return (
     <div className="flex justify-center gap-[41px] flex-wrap  xs:h-[70vh] xs:overflow-auto ">
       {data.map((item, index) => {
@@ -33,9 +30,7 @@ const Card = ({ data }) => {
                 >
                   Read More
                 </button>
-                {/* <button  onClick={readMore(item.url)} className="bg-red-600 border-none cursor-pointer text-white text-[13px] rounded-lg mt-4 ">
-                  Read More
-                </button> */}
+                
               </div>
             </div>
           );

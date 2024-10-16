@@ -12,9 +12,9 @@ const Newsapp = () => {
   const [loading, setLoading] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false); // Controls sidebar collapse state
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true); // Controls sidebar visibility for mobile
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Controls sidebar visibility for mobile
 
-  const API_KEY = "9c3ed8ee95884dec979460a60f96675b";
+  const API_KEY = "7842e68e59fa40b2b8ecb4c11e8dbef5";
 
   const getData = async () => {
     setLoading(true);
@@ -34,17 +34,15 @@ const Newsapp = () => {
   // Function to toggle sidebar collapse for different screen sizes
   const handleCollapse = () => {
     if (window.innerWidth < 768) {
-      // For small screens, completely hide the sidebar
-      setIsSidebarVisible((prev) => !prev);
+      setIsSidebarVisible(false); // Hide sidebar on small screens when arrow is clicked
     } else {
-      // For medium screens and above, collapse the sidebar (hide the text)
-      setIsCollapsed((prev) => !prev);
+      setIsCollapsed((prev) => !prev); // Collapse the sidebar for medium screens and above
     }
   };
 
   // Function to toggle sidebar visibility for mobile devices
   const toggleMenu = () => {
-    setIsSidebarVisible((prev) => !prev);
+    setIsSidebarVisible((prev) => !prev); // Toggle sidebar visibility for mobile
   };
 
   const handleInput = (e) => {
@@ -54,6 +52,23 @@ const Newsapp = () => {
   const userInput = (event) => {
     setSearch(event.target.value);
   };
+
+  // Handle screen resize to reset the sidebar states for mobile and tablet
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsCollapsed(false); // Reset collapsed state on small screens
+        setIsSidebarVisible(false); // Ensure sidebar is hidden on small screens
+      } else {
+        setIsSidebarVisible(true); // Sidebar is visible on tablet and larger by default
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     getData();
@@ -92,7 +107,7 @@ const Newsapp = () => {
           {/* Arrow to collapse and hide the sidebar */}
           <IoIosArrowDropright
             onClick={handleCollapse}
-            className={`absolute right-[-1px] md:right-[-15px] text-[44px]  top-80 cursor-pointer transition-transform duration-300 ease-in-out
+            className={`absolute right-[-1px] md:right-[-15px] text-[44px] top-80 cursor-pointer transition-transform duration-300 ease-in-out
           ${isCollapsed ? "rotate-180" : ""} transform`}
           />
 
