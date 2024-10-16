@@ -2,7 +2,7 @@ import React from "react";
 
 const AllNews = () => {
   return (
-    <div>
+    <div className="md:pl-16">
       <h1>All News</h1>
       {/* Add your content here */}
     </div>

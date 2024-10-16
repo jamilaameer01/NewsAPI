@@ -4,7 +4,7 @@ const Card = ({ data }) => {
   console.log(data);
   
   return (
-    <div className="flex justify-center gap-[41px] flex-wrap  xs:h-[70vh] xs:overflow-auto ">
+    <div className="flex justify-center gap-[41px] flex-wrap  xs:h-[70vh] xs:overflow-auto  tb:overflow-auto tb:h-[70vh] ">
       {data.map((item, index) => {
         if (!item.urlToImage) {
           return null;
@@ -30,7 +30,6 @@ const Card = ({ data }) => {
                 >
                   Read More
                 </button>
-                
               </div>
             </div>
           );

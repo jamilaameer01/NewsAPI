@@ -75,7 +75,7 @@ const Newsapp = () => {
   }, [search]);
 
   return (
-    <div className="relative">
+    <div className="relative md:pl-8">
 
       {/* Category Buttons */}
       <div className="flex gap-6 justify-center pt-10 overflow-x-scroll hide-scrollbar">

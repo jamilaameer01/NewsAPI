@@ -4,8 +4,8 @@ import { HiNewspaper } from "react-icons/hi";
 import { RiMenuFold2Fill } from "react-icons/ri";
 import { IoIosArrowDropright } from "react-icons/io";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Sidebar = ({ isOpen, setIsOpen }) => {
+  
   const [showLinks, setShowLinks] = useState(false); // State for showing/hiding links
 
   // Effect to handle the initial state based on screen width
@@ -30,16 +30,31 @@ const Sidebar = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    setShowLinks(true); // Always show links when sidebar is opened
+      setShowLinks(true);
+      if (typeof window != "undefined" && window.document) {
+        document.body.style.overflow = "hidden";
+      }
+      
   };
 
   const handleClose = () => {
     if (window.innerWidth < 768) {
-      setIsOpen(false); // For small devices, completely close the sidebar
+        setIsOpen(false);
+         document.body.style.overflow = "unset";
     } else {
-      setShowLinks(!showLinks); // Toggle links on medium devices
+        setShowLinks(!showLinks);
+       document.body.style.overflow = "unset";  
     }
-  };
+    };
+     const handleLinkClick = () => {
+        if (window.innerWidth < 768) {
+          setIsOpen(false); 
+         }
+        else {
+            setShowLinks(false)
+         }
+    };
+    
 
   return (
     <div>
@@ -60,7 +75,7 @@ const Sidebar = () => {
               News App
             </Link>
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-3 items-center ">
             <HiNewspaper className="block lg:hidden" />
             <Link to="/all-news" className="block px-4 py-2 text-[20px]">
               All News
@@ -82,7 +97,7 @@ const Sidebar = () => {
       </nav>
       {/* Sidebar with conditional width */}
       <div
-        className={`h-[100vh] bg-white fixed inset-0 z-10 transition-all duration-500 ${
+        className={`h-[100vh] bg-white fixed inset-0 z-10 transition-all duration-500 lg:hidden ${
           !isOpen ? "-translate-x-full" : "translate-x-0"
         } ${showLinks ? "w-44" : "w-14"}`} // Adjust width based on showLinks
       >
@@ -94,7 +109,7 @@ const Sidebar = () => {
         </div>
 
         <ul className="xs:gap-3 md:flex md:flex-col md:gap-y-5 pl-3 pt-3">
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-3 items-center" onClick={handleLinkClick}>
             <HiNewspaper />
             {showLinks && (
               <Link to="/" className="block px-4 py-2 text-[20px]">
@@ -102,7 +117,7 @@ const Sidebar = () => {
               </Link>
             )}
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-3 items-center" onClick={handleLinkClick}>
             <HiNewspaper />
             {showLinks && (
               <Link to="/all-news" className="block px-4 py-2 text-[20px]">
@@ -110,7 +125,7 @@ const Sidebar = () => {
               </Link>
             )}
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-3 items-center" onClick={handleLinkClick}>
             <HiNewspaper />
             {showLinks && (
               <Link to="/trending" className="block px-4 py-2 text-[20px]">
