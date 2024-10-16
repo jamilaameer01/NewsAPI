@@ -3,18 +3,20 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllNews from "./Pages/AllNews";
 import Trending from "./Pages/Trending";
-import Newsapp from "./Components/Newsapp";
+
+import Layout from "./Components/Layout";
+import Newsapp from "./Pages/Newsapp";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<Newsapp />} /> 
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Newsapp />} />
           <Route path="/all-news" element={<AllNews />} />
           <Route path="/trending" element={<Trending />} />
-        </Routes>
-      </div>
+        </Route>
+      </Routes>
     </Router>
   );
 }

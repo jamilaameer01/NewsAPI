@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
+import Card from "../Components/Card";
 import { Link } from "react-router-dom";
 import { RiMenuFold2Fill } from "react-icons/ri";
 import axios from "axios";
@@ -76,77 +76,6 @@ const Newsapp = () => {
 
   return (
     <div className="relative">
-      <nav className="flex justify-around items-center bg-blue-400 p-9 xs:flex-col xs:w-full xs:overflow-x-hidden xs:p-3">
-        <span className="text-[50px] text-black xs:text-[20px] tb:text-[29px]">
-          Trendy News
-        </span>
-
-        {/* Desktop */}
-        <ul className="hidden lg:flex">
-          <Link to="/all-news" className="block px-4 py-2">
-            All News
-          </Link>
-          <Link to="/trending" className="block px-4 py-2">
-            Trending
-          </Link>
-        </ul>
-
-        {/* Menu icon for mobile */}
-        <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className="p-2">
-            <RiMenuFold2Fill />
-          </button>
-        </div>
-
-        {/* Sidebar */}
-        <ul
-          className={`fixed left-0 top-0 h-full bg-white lg:hidden sm:hidden pt-6 shadow-md flex flex-col gap-y-7 transform transition-transform duration-300 ease-in-out
-            ${isSidebarVisible ? "translate-x-0" : "-translate-x-full"} 
-            ${isCollapsed ? "md:w-16" : "md:w-64"} md:flex md:translate-x-0`}
-        >
-          {/* Arrow to collapse and hide the sidebar */}
-          <IoIosArrowDropright
-            onClick={handleCollapse}
-            className={`absolute right-[-1px] md:right-[-15px] text-[44px] top-80 cursor-pointer transition-transform duration-300 ease-in-out
-          ${isCollapsed ? "rotate-180" : ""} transform`}
-          />
-
-          <li className="flex pl-2 items-center">
-            <SlBadge />
-            {/* Links are hidden if collapsed */}
-            {!isCollapsed && (
-              <Link to="/all-news" className="block px-4 py-2">
-                All News
-              </Link>
-            )}
-          </li>
-          <li className="flex pl-2 items-center">
-            <SlBadge />
-            {!isCollapsed && (
-              <Link to="/trending" className="block px-4 py-2">
-                Trending
-              </Link>
-            )}
-          </li>
-        </ul>
-
-        {/* Search Bar */}
-        <div className="flex items-center gap-[11px] text-[20px] xs:w-full xs:justify-around xs:pt-3">
-          <input
-            type="text"
-            placeholder="Search News"
-            value={search}
-            className="h-[20px] p-9 border-none text-left xs:p-6 xs:rounded-lg xs:max-w-[12rem]"
-            onChange={handleInput}
-          />
-          <button
-            onClick={getData}
-            className="bg-blue-900 border-none rounded-sm text-white xs:py-2 cursor-pointer xs:rounded-lg xs:max-w-[6rem]"
-          >
-            Search
-          </button>
-        </div>
-      </nav>
 
       {/* Category Buttons */}
       <div className="flex gap-6 justify-center pt-10 overflow-x-scroll hide-scrollbar">
@@ -198,6 +127,8 @@ const Newsapp = () => {
         newsData && <Card data={newsData} />
       )}
     </div>
+
+
   );
 };
 
