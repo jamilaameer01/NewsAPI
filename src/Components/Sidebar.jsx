@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HiNewspaper } from "react-icons/hi";
 import { RiMenuFold2Fill } from "react-icons/ri";
 import { IoIosArrowDropright } from "react-icons/io";
@@ -55,7 +55,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
          }
     };
     
-
+const activeStyles = {
+  fontWeight: "bold",
+  textDecoration: " overline ",
+  color: "#0f766e",
+};
   return (
     <div>
       <nav className="flex justify-around items-center bg-blue-400 p-9 xs:flex-col xs:w-full xs:overflow-x-hidden xs:p-3">
@@ -71,21 +75,27 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <ul className="lg:flex hidden">
           <li className="flex gap-3 items-center">
             <HiNewspaper className="block lg:hidden" />
-            <Link to="/" className="block px-4 py-2 text-[20px]">
+            <NavLink to="/" className="block px-4 py-2 text-[20px]"
+            style={({ isActive }) => isActive ? activeStyles : null}
+            >
               News App
-            </Link>
+            </NavLink>
           </li>
           <li className="flex gap-3 items-center ">
             <HiNewspaper className="block lg:hidden" />
-            <Link to="/all-news" className="block px-4 py-2 text-[20px]">
-              All News
-            </Link>
+            <NavLink to="category" className="block px-4 py-2 text-[20px]"
+            style={({ isActive }) => isActive ? activeStyles : null}
+            >
+              Category
+            </NavLink>
           </li>
           <li className="flex gap-3 items-center">
             <HiNewspaper className="block lg:hidden" />
-            <Link to="/trending" className="block px-4 py-2 text-[20px]">
+            <NavLink to="trending" className="block px-4 py-2 text-[20px]"
+            style={({ isActive }) => isActive ? activeStyles : null}
+            >
               Trending
-            </Link>
+            </NavLink>
           </li>
         </ul>
 
