@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -18,20 +18,46 @@ import Technology from "./Pages/Technology";
 import Sports, { loader as sportsPageLoader } from "./Pages/Sports";
 import CategoryLayout from "./Components/CategoryLayout";
 import SportsDetail, { loader as sportsdetailPageLoader } from "./Pages/SportsDetail";
+import Error from "./Components/Error";
+
+
+
+const Newsappone = lazy(() => import("./Pages/Newsapp"));
+const Sportstwo = lazy(() => import("./Pages/Sports"));
+const SportsDetailtwo = lazy(() => import("./Pages/SportsDetail"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Newsapp />} />
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
+      <Route
+        index
+        element={
+          <Suspense fallback={<div className="text-red-800">Loading News App...</div>}>
+            <Newsapp />
+          </Suspense>
+        }
+      />
       <Route path="trending" element={<Trending />} />
 
       <Route path="category" element={<CategoryLayout />}>
         <Route index element={<Technology />} />
         <Route path="business" element={<Business />} />
-        <Route path="sports" element={<Sports />} loader={sportsPageLoader} />
+        <Route
+          path="sports"
+          element={
+            <Suspense fallback={<div>Loading Sports...</div>}>
+              <Sports />
+             </Suspense>
+          }
+          loader={sportsPageLoader}
+        />
         <Route
           path="sports/:id"
-          element={<SportsDetail />}
+          element={
+            <Suspense fallback={<div>Loading Sports Detail...</div>}>
+              <SportsDetail />
+           </Suspense>
+          }
           loader={sportsdetailPageLoader}
         />
       </Route>
