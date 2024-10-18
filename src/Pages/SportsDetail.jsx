@@ -1,31 +1,34 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { HiNewspaper } from "react-icons/hi";
-import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import {  useLoaderData } from "react-router-dom";
+
+export async function loader({ params }) {
+  const { id } = params;
+  try {
+    const response = await axios.get(`http://localhost:3001/cards/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching card details", error);
+    throw error;
+  }
+}
 
 const SportsDetail = () => {
-  const [card, setCard] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const { id } = useParams();
+  const card = useLoaderData();
 
-  useEffect(() => {
-    const fetchCardDetails = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/cards/${id}`);
-        setCard(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching card details", error);
-        setLoading(false);
-      }
-    };
-    fetchCardDetails();
-  }, [id]);
-  console.log("Fetching details for ID:", id);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // useEffect(() => {
+  //   const fetchCardDetails = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:3001/cards/${id}`);
+  //       setCard(response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching card details", error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchCardDetails();
+  // }, [id]);
 
   if (!card) {
     return <div>Card not found</div>;
