@@ -15,7 +15,6 @@ import Cricket from "./Pages/Cricket";
 import Boxing from "./Pages/Boxing";
 import SportsDetail from "./Pages/SportsDetail";
 
-
 function App() {
   return (
     <Router>
@@ -23,15 +22,13 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Newsapp />} />
           <Route path="trending" element={<Trending />} />
+
           <Route path="category" element={<CategoryLayout />}>
             <Route index element={<Technology />} />
             <Route path="business" element={<Business />} />
             <Route path="sports" element={<Sports />} />
-            <Route path="sports/:id" element={<SportsDetail />}>
-              <Route index element={<Football />} />
-              <Route path="cricket" element={<Cricket />} />
-              <Route path="boxing" element={<Boxing />} />
-            </Route>
+            <Route path="sports/:id" element={<SportsDetail />} />
+            
           </Route>
         </Route>
       </Routes>

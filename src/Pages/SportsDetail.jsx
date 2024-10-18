@@ -1,59 +1,68 @@
-import React from "react";
-
-const CarCard = ({ name, price, imageUrl }) => {
-    const carData = [
-      {
-        name: "Modest Explorer",
-        price: "$60/day",
-        imageUrl: "https://example.com/modest-explorer.jpg",
-      },
-      {
-        name: "Beach Cruiser",
-        price: "$75/day",
-        imageUrl: "https://example.com/beach-cruiser.jpg",
-      },
-     
-    ];
-  return (
-    <div className="flex items-center space-x-4 p-4 bg-white shadow-md rounded-lg">
-      <img
-        src={imageUrl}
-        alt={name}
-        className="w-16 h-16 object-cover rounded-md"
-      />
-      <div>
-        <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-gray-500">{price}</p>
-      </div>
-    </div>
-  );
-};
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { HiNewspaper } from "react-icons/hi";
+import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
 const SportsDetail = () => {
-  const carData = [
-    {
-      name: "Modest Explorer",
-      price: "$60/day",
-      imageUrl: "/path/to/image1.jpg",
-    },
-    {
-      name: "Beach Cruiser",
-      price: "$75/day",
-      imageUrl: "/path/to/image2.jpg",
-    },
-  
-  ];
+  const [card, setCard] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchCardDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/cards/${id}`);
+        setCard(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching card details", error);
+        setLoading(false);
+      }
+    };
+    fetchCardDetails();
+  }, [id]);
+  console.log("Fetching details for ID:", id);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!card) {
+    return <div>Card not found</div>;
+  }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {carData.map((car, index) => (
-        <CarCard
-          key={index}
-          name={car.name}
-          price={car.price}
-          imageUrl={car.imageUrl}
-        />
-      ))}
+    <div>
+      <div className="">
+        <div className="mt-8 p-6 bg-white shadow-lg   w-full rounded-lg max-w-lg  mx-auto flex flex-col items-center">
+          <img
+            src={card.image}
+            alt={card.name}
+            className="object-cover rounded-lg w-full h-full border-2 border-gray-200 mb-4 shadow-md"
+          />
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">{card.name}</h2>
+          <p className="text-md text-gray-600 mb-4 text-center">
+            {card.description}
+          </p>
+
+          <div className="flex flex-col space-y-1 w-full text-gray-700">
+            <p className="text-md font-semibold flex justify-between">
+              Release Year:{" "}
+              <span className="font-normal">{card.releaseYear}</span>
+            </p>
+            <p className="text-md font-semibold flex justify-between">
+              Founded: <span className="font-normal">{card.founded}</span>
+            </p>
+            <p className="text-md font-semibold flex justify-between">
+              Popularity: <span className="font-normal">{card.popularity}</span>
+            </p>
+            <p className="text-md font-semibold flex justify-between">
+              Number of Players:{" "}
+              <span className="font-normal">{card.numberOfPlayers}</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

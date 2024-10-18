@@ -1,0 +1,84 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "Cricket",
+      "description": "A popular sport played between two teams of eleven players with a bat and ball.",
+      "image": "/cc.png",
+      "releaseYear": "2001",
+      "founded": "Pakistan",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 2,
+      "name": "Football",
+      "description": "A team sport played by two teams of eleven players where the objective is to score goals.",
+      "image": "/football.jpg",
+      "releaseYear": "5000",
+      "founded": "UK",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 3,
+      "name": "Boxing",
+      "description": "A combat sport where two people, usually wearing protective gloves, throw punches at each other.",
+      "image": "/boxing.jpg",
+      "releaseYear": "1933" ,
+      "founded": "India",
+      "popularity": "Low",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 4,
+      "name": "Tennis",
+      "description": "A racquet sport that can be played individually against a single opponent or between two teams of two players each.",
+      "image": "/tennis.jpg",
+      "releaseYear": "2033",
+      "founded": "America",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 5,
+      "name": "Basketball",
+      "description": "A team sport where two teams of five players try to score points by throwing a ball through the opponent's hoop.",
+      "image": "/basketball.jpg",
+      "releaseYear": 2293,
+      "founded": "England",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 6,
+      "name": "Swimming",
+      "description": "An individual or team sport that involves using one's entire body to move through water.",
+      "image": "/swimming.jpg",
+      "releaseYear": "1943",
+      "founded": "Austria",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 7,
+      "name": "Badminton",
+      "description": "A racquet sport played using racquets to hit a shuttlecock across a net.",
+      "image": "/badminton.jpg",
+      "releaseYear": "2023",
+      "founded": "France",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    },
+    {
+      "id": 8,
+      "name": "Golf",
+      "description": "A club-and-ball sport in which players use various clubs to hit balls into a series of holes on a course in as few strokes as possible.",
+      "image": "/golf.jpg",
+      "releaseYear": "2017",
+      "founded": "Bangladash",
+      "popularity": "High",
+      "numberOfPlayers": 2
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const Layout = () => {
       <div className="">
         <Outlet context={{isOpen,setIsOpen}} /> 
           </div>
-          <Footer/>
+          {/* <Footer/> */}
     </div>
   );
 };
