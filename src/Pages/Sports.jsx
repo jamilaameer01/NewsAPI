@@ -4,17 +4,17 @@ import { NavLink, useLoaderData } from "react-router-dom";
 
 export async function loader() {
   try {
-    const response = await axios.get("http://localhost:3001/cards");
+    const response = await axios.get("/api/sports-news")
+    console.log("response>>>>>>>>>>>>>>", response);
     return response.data;
   } catch (error) {
-    console.error("Error fetching cards data", error);
+    console.error("Error fetching cards data>>>>>>>>", error);
     throw error;
   }
 }
 
 const Sports = () => {
   const cards = useLoaderData();
-  
 
   // useEffect(() => {
   //   const apicall = async () => {

@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {  useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
   const { id } = params;
   try {
-    const response = await axios.get(`http://localhost:3001/cards/${id}`);
+    const response = await axios.get(`/api/sports-news/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching card details", error);

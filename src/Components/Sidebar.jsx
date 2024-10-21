@@ -75,26 +75,42 @@ const activeStyles = {
         <ul className="lg:flex hidden">
           <li className="flex gap-3 items-center">
             <HiNewspaper className="block lg:hidden" />
-            <NavLink to="/" className="block px-4 py-2 text-[20px]"
-            style={({ isActive }) => isActive ? activeStyles : null}
+            <NavLink
+              to="/"
+              className="block px-4 py-2 text-[20px]"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
             >
               News App
             </NavLink>
           </li>
           <li className="flex gap-3 items-center ">
             <HiNewspaper className="block lg:hidden" />
-            <NavLink to="category" className="block px-4 py-2 text-[20px]"
-            style={({ isActive }) => isActive ? activeStyles : null}
+            <NavLink
+              to="category"
+              className="block px-4 py-2 text-[20px]"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
             >
               Category
             </NavLink>
           </li>
           <li className="flex gap-3 items-center">
             <HiNewspaper className="block lg:hidden" />
-            <NavLink to="trending" className="block px-4 py-2 text-[20px]"
-            style={({ isActive }) => isActive ? activeStyles : null}
+            <NavLink
+              to="trending"
+              className="block px-4 py-2 text-[20px]"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
             >
               Trending
+            </NavLink>
+          </li>
+          <li className="flex gap-3 items-center">
+            <HiNewspaper className="block lg:hidden" />
+            <NavLink
+              to="signin"
+              className="block px-4 py-2 text-[20px]"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
+              SignIn
             </NavLink>
           </li>
         </ul>
@@ -130,8 +146,8 @@ const activeStyles = {
           <li className="flex gap-3 items-center" onClick={handleLinkClick}>
             <HiNewspaper />
             {showLinks && (
-              <Link to="/all-news" className="block px-4 py-2 text-[20px]">
-                All News
+              <Link to="/category" className="block px-4 py-2 text-[20px]">
+                Category
               </Link>
             )}
           </li>

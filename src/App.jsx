@@ -7,6 +7,7 @@ import {
   createRoutesFromElements,
   Routes,
   Route,
+  redirect,
 } from "react-router-dom";
 import Trending from "./Pages/Trending";
 
@@ -17,10 +18,12 @@ import Business from "./Pages/Business";
 import Technology from "./Pages/Technology";
 import Sports, { loader as sportsPageLoader } from "./Pages/Sports";
 import CategoryLayout from "./Components/CategoryLayout";
-import SportsDetail, { loader as sportsdetailPageLoader } from "./Pages/SportsDetail";
+import SportsDetail, {
+  loader as sportsdetailPageLoader,
+} from "./Pages/SportsDetail";
 import Error from "./Components/Error";
-
-
+import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 
 const Newsappone = lazy(() => import("./Pages/Newsapp"));
 const Sportstwo = lazy(() => import("./Pages/Sports"));
@@ -32,14 +35,25 @@ const router = createBrowserRouter(
       <Route
         index
         element={
-          <Suspense fallback={<div className="text-red-800">Loading News App...</div>}>
+          <Suspense
+            fallback={<div className="text-red-800">Loading News App...</div>}
+          >
             <Newsapp />
           </Suspense>
         }
+        loader={async () => {
+          return null;
+        }}
       />
       <Route path="trending" element={<Trending />} />
+      <Route path="signin" element={<SignIn />} />
+      <Route path="signup" element={<SignUp />} />
 
-      <Route path="category" element={<CategoryLayout />}>
+      <Route
+        path="category"
+        element={<CategoryLayout />}
+       
+      >
         <Route index element={<Technology />} />
         <Route path="business" element={<Business />} />
         <Route
@@ -47,7 +61,7 @@ const router = createBrowserRouter(
           element={
             <Suspense fallback={<div>Loading Sports...</div>}>
               <Sports />
-             </Suspense>
+            </Suspense>
           }
           loader={sportsPageLoader}
         />
@@ -56,7 +70,7 @@ const router = createBrowserRouter(
           element={
             <Suspense fallback={<div>Loading Sports Detail...</div>}>
               <SportsDetail />
-           </Suspense>
+            </Suspense>
           }
           loader={sportsdetailPageLoader}
         />

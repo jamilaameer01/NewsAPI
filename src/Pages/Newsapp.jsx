@@ -14,18 +14,17 @@ const Newsapp = () => {
   const [isCollapsed, setIsCollapsed] = useState(false); // Controls sidebar collapse state
   const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Controls sidebar visibility for mobile
 
-  const API_KEY = "7842e68e59fa40b2b8ecb4c11e8dbef5";
+  // const API_KEY = "7842e68e59fa40b2b8ecb4c11e8dbef5";
 
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`
-      );
-      const jsonData = await response.data;
-      setNewsData(jsonData.articles);
+      const response = await axios.get("/api/all-news");
+      console.log("response>>>>>>>>>", response);
+      // return response.data;
+      setNewsData(response.data);
     } catch (error) {
-      console.error("Error fetching data", error);
+      console.error("Error fetching data>>>>>>>>>>>>>", error);
     } finally {
       setLoading(false);
     }
@@ -76,7 +75,6 @@ const Newsapp = () => {
 
   return (
     <div className="relative md:pl-8">
-
       {/* Category Buttons */}
       <div className="flex gap-6 justify-center pt-10 overflow-x-scroll hide-scrollbar">
         <button
@@ -127,8 +125,6 @@ const Newsapp = () => {
         newsData && <Card data={newsData} />
       )}
     </div>
-
-
   );
 };
 
